@@ -57,7 +57,7 @@ class BookController
      */
     public function ShowBookInfoAction()
     {
-        $bookid = $_GET['bookid'];
+        $bookid = (integer) $_GET["bookid"];
         $book = new Book
             ([
                 'bookid' => $bookid,
@@ -68,8 +68,8 @@ class BookController
 
     public function GroupByPriceAction()
     {
-        $MaxPrice = $_GET['MaxPrice'];
-        $MinPrice = $_GET['MinPrice'];
+        $MaxPrice = (integer) $_GET['MaxPrice'];
+        $MinPrice = (integer) $_GET['MinPrice'];
             $BookService = new BookService();
             return $BookService->GroupByPrice($MaxPrice,$MinPrice);
     }

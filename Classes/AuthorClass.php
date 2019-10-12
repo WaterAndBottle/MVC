@@ -1,7 +1,7 @@
 <?php
 
 
-class AuthorClass
+class Author
 {
     /**
      * @var string
@@ -86,9 +86,9 @@ public function __construct($authordata=array())
         if (!empty($this->authorBooks))
         {
             $authorService = new AuthorService();
-            if (!empty($this -> authorbookid))
+            if (!empty($this -> authorid))
             {
-                $this->authorBooks = $authorService->getAuthorBooksByAuthorBooksId($this->authorbookid);
+                $this->authorBooks = $authorService->getAuthorBooksByAuthorBooksId($this->authorid);
             }
         }
         return $this->authorBooks;
