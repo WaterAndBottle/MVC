@@ -39,7 +39,7 @@ class AuthorController
 
     public function ShowAuthorInfoAction()
     {
-        $authorid=(integer) $_GET['$authorid'];
+        $authorid=(integer) $_GET['authorid'];
         $author = new Author
         ([
             'authorid' => $authorid,
