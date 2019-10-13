@@ -8,11 +8,9 @@ class Author
      */
 private $authorName;
 
-    /**
-     * @var array
-     */
+/*
 private $authorBooks;
-
+*/
     /**
      * @var int
      */
@@ -35,7 +33,7 @@ private $authorbookid;
 public function __construct($authordata=array())
 {
     $this->authorName=$authordata['authorName'];
-    $this->authorBooks=$authordata['authorBooks'];
+ /*   $this->authorBooks=$authordata['authorBooks']; */
     $this->birthdate=$authordata['birthdate'];
     $this->authorid=$authordata['authorid'];
     $this->authorbookid=$authordata['authorbookid'];
@@ -78,9 +76,7 @@ public function __construct($authordata=array())
         }
     }
 
-    /**
-     * @return array|mixed
-     */
+   /*
     public function getAuthorBooks()
     {
         if (!empty($this->authorBooks))
@@ -94,20 +90,17 @@ public function __construct($authordata=array())
         return $this->authorBooks;
     }
 
-    /**
-     * @param array $authorBooks
-     * @return array
-     */
     public function setAuthorBooks($authorBooks=array())
     {
         $this->authorBooks = $authorBooks;
         return $authorBooks;
     }
+   */
 
     /**
      * @return int|mixed
      */
-    public function getBirthDate()
+    public function getAuthorBirthDate()
     {
         if (!isset($this->birthdate))
         {

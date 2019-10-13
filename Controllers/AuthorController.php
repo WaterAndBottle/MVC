@@ -11,29 +11,25 @@ class AuthorController
     public function AddAuthorAction()
     {
         $authorName = $_GET['authorName'];
-        $authorBooks = $_GET['authorBooks'];
-        $birthdate = $_GET['birthdate'];
+        $birthdate = (integer) $_GET['birthdate'];
         $author = new Author
         ([
             'authorName' => $authorName,
-            'authorBooks' => $authorBooks,
             'birthdate' => $birthdate,
         ]);
         $authorService = new AuthorService();
-        return $authorService->addAuthor($author);
+        return $authorService->AddAuthor($author);
     }
 
 
     public function EditAuthorAction()
     {
         $authorName = $_GET['authorName'];
-        $authorBooks = $_GET['authorBooks'];
         $birthdate = (integer) $_GET['birthdate'];
-        $authorid=(integer) $_GET['$authorid'];
+        $authorid=(integer) $_GET['authorid'];
         $author = new Author
         ([
             'authorName' => $authorName,
-            'authorBooks' => $authorBooks,
             'birthdate' => $birthdate,
             'authorid' => $authorid,
         ]);
