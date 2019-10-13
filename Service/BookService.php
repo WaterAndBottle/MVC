@@ -109,6 +109,17 @@ class BookService
         return $result;
     }
 
+    public function getBookIdByBookName($title)
+    {
+        $result=false;
+        if (!empty($title))
+        {
+            $bookAdapter=new BookAdapter();
+            $result=$bookAdapter->getBookIdByBookName($title);
+        }
+        return $result;
+    }
+
     /**
      * @param $book
      * @return bool
@@ -205,5 +216,23 @@ class BookService
             $result = $BookAdapter->GroupByPrice($MaxPrice,$MinPrice);
         }
         return $result;
+    }
+
+
+    public function BindBook($book,$author)
+    {
+        $bookid = $book->getBookIdByBookName();
+        $authorid = $author->getBookAuthor();
+        $result=false;
+        if (!empty($bookid)&&!empty($authorid))
+        {
+            $edittedbookinfo=array
+            (
+                "title" => $title,
+                "author" => $author,
+            );
+            $BookAdapter = new BookAdapter();
+            $result = $BookAdapter->EditBook($edittedbookinfo);
+        }
     }
 }

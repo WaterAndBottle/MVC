@@ -106,6 +106,20 @@ class BookAdapter
     }
 
     /**
+     * @param $title
+     * @return array|null
+     */
+    public function getBookIdByBookName($title)
+    {
+        $mysqli=new mysqli('localhost','root','','myfirst');
+        $query='SELECT id FROM books WHERE Title='.$title;
+        $result=$mysqli->query($query);
+        $data=mysqli_fetch_assoc($result);
+        $data=$data['bookid'];
+        return $data;
+    }
+
+    /**
      * @param $bookinfo
      * @return array|null
      */

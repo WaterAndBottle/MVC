@@ -66,11 +66,33 @@ class BookController
             return $BookService->ShowBookInfo($book);
     }
 
+    /**
+     * @return mixed
+     */
     public function GroupByPriceAction()
     {
         $MaxPrice = (integer) $_GET['MaxPrice'];
         $MinPrice = (integer) $_GET['MinPrice'];
             $BookService = new BookService();
             return $BookService->GroupByPrice($MaxPrice,$MinPrice);
+    }
+
+    /**
+     *
+     */
+    public function BindBookAuthor()
+    {
+            $title = $_GET['title'];
+            $authorName = $_GET['authorName'];
+            $book = new Book
+            ([
+                'title' => $title,
+            ]);
+            $author = new Author
+            ([
+                'authorName' => $authorName,
+            ]);
+            $BookService = new BookService();
+            return $BookService->BindBook($book,$author);
     }
 }
