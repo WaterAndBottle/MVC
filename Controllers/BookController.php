@@ -80,19 +80,16 @@ class BookController
     /**
      *
      */
-    public function BindBookAuthor()
+    public function BindBookAuthorAction()
     {
-            $title = $_GET['title'];
-            $authorName = $_GET['authorName'];
+            $bookid = $_GET['bookid'];
+            $authorid = $_GET['authorid'];
             $book = new Book
             ([
-                'title' => $title,
-            ]);
-            $author = new Author
-            ([
-                'authorName' => $authorName,
+                'bookid' => $bookid,
+                'authorid' => $authorid,
             ]);
             $BookService = new BookService();
-            return $BookService->BindBook($book,$author);
+            return $BookService->BindBook($book);
     }
 }

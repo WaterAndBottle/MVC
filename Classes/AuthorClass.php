@@ -150,4 +150,16 @@ public function __construct($authordata=array())
         return $this->authorbookid;
     }
 
+    public function getAuthorIdByName ()
+    {
+        if (!isset($this->authorid))
+        {
+            $authorService = new AuthorService();
+            if (!empty($this -> authorName))
+            {
+                $this->authorid = $authorService->getAuthorIdByName($this->authorName);
+            }
+        }
+        return $this->birthdate;
+    }
 }

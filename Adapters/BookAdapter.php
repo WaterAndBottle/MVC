@@ -152,9 +152,6 @@ class BookAdapter
         if (!empty($sqlInsertColumns)&&!empty($sqlInsertValue))
         {
             $dbdata = $mysqli->query($sql ."(".$sqlInsertColumns.")"." "."VALUES".""."(".$sqlInsertValue.")");
-            var_dump($sql ."(".$sqlInsertColumns.")"." "."VALUES"." "."(".$sqlInsertValue.")");
-            var_dump($mysqli);
-
             $result=mysqli_fetch_assoc($dbdata);
         }
         return $result;
@@ -182,8 +179,6 @@ class BookAdapter
         $sqlInsert = implode(',', $sqlInsert);
         if (!empty($sqlInsert)) {
             $dbdata = $mysqli->query($sql .$sqlInsert." "."WHERE id=".$id);
-            var_dump($sql .$sqlInsert." "."WHERE id=".$id);
-
             $result=mysqli_fetch_assoc($dbdata);
         }
         return $result;
@@ -210,5 +205,42 @@ class BookAdapter
         $result=$mysqli->query($query);
         for ($data = array (); $row = $result->fetch_assoc(); $data[] = $row);
         return $data;
+    }
+
+    public function BindBook($bindinfo)
+    {
+        $mysqli=new mysqli('localhost','root','','myfirst');
+        $result['status'] = false;
+        $result['message'] = '';
+        $sql = 'INSERT INTO authorbook ';
+        $sqlInsertColumns = array();
+        $sqlInsertValue=array();
+        foreach ($bindinfo as $value => $columns)
+        {
+            if (!empty($value))
+            {
+                $sqlInsertColumns[] = ucfirst($columns);
+                if (is_integer($value))
+                {
+                    $sqlInsertValue[]="'".$value."'";
+                }
+                else
+                {
+                    $sqlInsertValue[]=$value;
+                }
+
+            }
+        }
+        $sqlInsertColumns = implode(',', $sqlInsertColumns);
+        $sqlInsertValue = implode(',', $sqlInsertValue);
+        if (!empty($sqlInsertColumns)&&!empty($sqlInsertValue))
+        {
+            $dbdata = $mysqli->query($sql ."(".$sqlInsertColumns.")"." "."VALUES".""."(".$sqlInsertValue.")");
+            var_dump($sql ."(".$sqlInsertColumns.")"." "."VALUES"." "."(".$sqlInsertValue.")");
+            var_dump($mysqli);
+
+            $result=mysqli_fetch_assoc($dbdata);
+        }
+        return $result;
     }
 }

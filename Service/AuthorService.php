@@ -17,17 +17,30 @@ class AuthorService
     }
 
 
-/*    public function getAuthorBooksByAuthorId($authorid)
+
+    public function getAuthorIdByName($authorName)
     {
         $result=false;
-        if (!empty($authorid))
+        if (!empty($authorName))
         {
             $authorAdapter=new AuthorAdapter();
-            $result=$authorAdapter->getAuthorBooksByAuthorId($authorid);
+            $result=$authorAdapter->getAuthorIdByName($authorName);
         }
         return $result;
     }
-*/
+
+
+    /*    public function getAuthorBooksByAuthorId($authorid)
+        {
+            $result=false;
+            if (!empty($authorid))
+            {
+                $authorAdapter=new AuthorAdapter();
+                $result=$authorAdapter->getAuthorBooksByAuthorId($authorid);
+            }
+            return $result;
+        }
+    */
     public function getAuthorBirthDateByAuthorId($authorid)
     {
         $result=false;

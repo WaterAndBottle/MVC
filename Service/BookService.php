@@ -219,20 +219,21 @@ class BookService
     }
 
 
-    public function BindBook($book,$author)
+    public function BindBook($book)
     {
-        $bookid = $book->getBookIdByBookName();
-        $authorid = $author->getBookAuthor();
+        $bookid = $book->getBookId();
+        $authorid = $book->getAuthorId();
         $result=false;
         if (!empty($bookid)&&!empty($authorid))
         {
-            $edittedbookinfo=array
+            $bindinfo=array
             (
-                "title" => $title,
-                "author" => $author,
+                "bookid" => $bookid,
+                "authorid" => $authorid,
             );
             $BookAdapter = new BookAdapter();
-            $result = $BookAdapter->EditBook($edittedbookinfo);
+            $result = $BookAdapter->EditBook($bindinfo);
         }
+        return $result;
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+include ROOT.'/Classes/AuthorClass.php';
 
 class Book
 {
@@ -51,7 +52,6 @@ private $bookid;
     /**
      * @var integer
      */
-private $bindid;
 
 public function __construct($bookdata=array())
 {
@@ -63,7 +63,6 @@ public function __construct($bookdata=array())
     $this->genre=$bookdata['genre'];
     $this->price=$bookdata['price'];
     $this->bookid=$bookdata['bookid'];
-    $this->bindid=$bookdata['bindid'];
 }
 
     /**
@@ -317,13 +316,6 @@ public function __construct($bookdata=array())
         return $this->bookid;
     }
 
-    /**
-     * @return integer
-     */
-    public function getBindId()
-    {
-        return $this->bindid;
-    }
 
     /**
      * @return int|mixed
@@ -338,5 +330,18 @@ public function __construct($bookdata=array())
             }
         }
         return $this->bookid;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthorId()
+    {
+        if (isset($this->author))
+        {
+            $author = new Author();
+            $authorid = $author->getAuthorId();
+            return $authorid;
+        }
     }
 }

@@ -24,6 +24,16 @@ class AuthorAdapter
         return $data;
     }
 
+    public function getAuthorIdByName($authorName)
+    {
+        $mysqli=new mysqli('localhost','root','','myfirst');
+        $query='SELECT AuthorId FROM author WHERE AuthorName='.$authorName;
+        $result=$mysqli->query($query);
+        $data=mysqli_fetch_assoc($result);
+        $data=$data['authorid'];
+        return $data;
+    }
+
     public function AddAuthor($authorInfo)
     {
         $mysqli=new mysqli('localhost','root','','myfirst');
