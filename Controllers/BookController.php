@@ -87,9 +87,12 @@ class BookController
             $book = new Book
             ([
                 'bookid' => $bookid,
+            ]);
+            $author=new Author
+            ([
                 'authorid' => $authorid,
             ]);
             $BookService = new BookService();
-            return $BookService->BindBook($book);
+            return $BookService->BindBook($book,$author);
     }
 }

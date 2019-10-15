@@ -215,7 +215,7 @@ class BookAdapter
         $sql = 'INSERT INTO authorbook ';
         $sqlInsertColumns = array();
         $sqlInsertValue=array();
-        foreach ($bindinfo as $value => $columns)
+        foreach ($bindinfo as $columns => $value)
         {
             if (!empty($value))
             {

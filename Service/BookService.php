@@ -219,10 +219,10 @@ class BookService
     }
 
 
-    public function BindBook($book)
+    public function BindBook($book,$author)
     {
         $bookid = $book->getBookId();
-        $authorid = $book->getAuthorId();
+        $authorid = $author->getAuthorId();
         $result=false;
         if (!empty($bookid)&&!empty($authorid))
         {
@@ -232,7 +232,7 @@ class BookService
                 "authorid" => $authorid,
             );
             $BookAdapter = new BookAdapter();
-            $result = $BookAdapter->EditBook($bindinfo);
+            $result = $BookAdapter->BindBook($bindinfo);
         }
         return $result;
     }
