@@ -95,4 +95,20 @@ class BookController
             $BookService = new BookService();
             return $BookService->BindBook($book,$author);
     }
+
+    public function EditBookAuthorAction()
+    {
+        $bookid = $_GET['bookid'];
+        $authorid = $_GET['authorid'];
+        $book = new Book
+        ([
+            'bookid' => $bookid,
+        ]);
+        $author=new Author
+        ([
+            'authorid' => $authorid,
+        ]);
+        $BookService = new BookService();
+        return $BookService->EditBookAuthor($book,$author);
+    }
 }

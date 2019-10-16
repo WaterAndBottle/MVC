@@ -236,4 +236,22 @@ class BookService
         }
         return $result;
     }
+
+    public function EditBookAuthor($book,$author)
+    {
+        $bookid = $book->getBookId();
+        $authorid = $author->getAuthorId();
+        $result=false;
+        if (!empty($bookid)&&!empty($authorid))
+        {
+            $edittedauthorbookinfo=array
+            (
+                "bookid" => $bookid,
+                "authorid" => $authorid,
+            );
+            $BookAdapter = new BookAdapter();
+            $result = $BookAdapter->EditBookAuthor($edittedauthorbookinfo);
+        }
+        return $result;
+    }
 }

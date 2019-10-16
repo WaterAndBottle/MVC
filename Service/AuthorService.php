@@ -101,4 +101,16 @@ class AuthorService
         }
         return $result;
     }
+
+    public function ShowAuthorAndHisBooksInfoAction($author)
+    {
+        $authorid = $author->getAuthorId();
+        $result=false;
+        if (!empty($authorid))
+        {
+            $authorAdapter = new AuthorAdapter();
+            $result = $authorAdapter->ShowAuthorAndHisBooksInfoAction($authorid);
+        }
+        return $result;
+    }
 }

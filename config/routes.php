@@ -7,6 +7,7 @@ return array(
     'Book/Show/([a-z]+)'=>'Book/ShowBookInfo',// Метод ShowBookInfoAction в BookController
     'Book/GroupByPrice/([a-z]+)'=>'Book/GroupByPrice',// Метод GroupByPriceAction в BookController
     'Book/Bind/([a-z]+)'=>'Book/BindBookAuthor',// Метод ShowAuthorInfoAction в AuthorController
+    'Book/EditBooks/([a-z]+)'=>'Book/EditBookAuthor',// Метод ShowAuthorInfoAction в AuthorController
     'Author/AddAuthor/([a-z]+)'=>'Author/AddAuthor',// Метод AddAuthorAction в AuthorController
     'Author/EditAuthor/([a-z]+)'=>'Author/EditAuthor',// Метод EditAuthorAction в AuthorController
     'Author/ShowAuthor/([a-z]+)'=>'Author/ShowAuthorInfo',// Метод ShowAuthorInfoAction в AuthorController

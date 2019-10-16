@@ -47,4 +47,15 @@ class AuthorController
         $authorService = new AuthorService();
         return $authorService->ShowAuthorInfo($author);
     }
+
+    public function ShowAuthorAndHisBooksInfoAction()
+    {
+        $authorid=(integer) $_GET['authorid'];
+        $author = new Author
+        ([
+            'authorid' => $authorid,
+        ]);
+        $authorService = new AuthorService();
+        return $authorService->ShowAuthorAndHisBooksInfoAction($author);
+    }
 }

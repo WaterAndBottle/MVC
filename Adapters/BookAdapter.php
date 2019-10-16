@@ -215,6 +215,7 @@ class BookAdapter
         $sql = 'INSERT INTO authorbook ';
         $sqlInsertColumns = array();
         $sqlInsertValue=array();
+        var_dump($bindinfo);
         foreach ($bindinfo as $columns => $value)
         {
             if (!empty($value))
@@ -236,9 +237,29 @@ class BookAdapter
         if (!empty($sqlInsertColumns)&&!empty($sqlInsertValue))
         {
             $dbdata = $mysqli->query($sql ."(".$sqlInsertColumns.")"." "."VALUES".""."(".$sqlInsertValue.")");
-            var_dump($sql ."(".$sqlInsertColumns.")"." "."VALUES"." "."(".$sqlInsertValue.")");
-            var_dump($mysqli);
+            var_dump($sql ."(".$sqlInsertColumns.")"." "."VALUES".""."(".$sqlInsertValue.")");
+            $result=mysqli_fetch_assoc($dbdata);
+        }
+        return $result;
+    }
 
+    public function EditBookAuthor($edittedauthorbookinfo)
+    {
+        $mysqli=new mysqli('localhost','root','','myfirst');
+        $result['status'] = false;
+        $result['message'] = '';
+        $id = $edittedauthorbookinfo['authorid'];
+        unset($edittedauthorbookinfo['authorid']);
+        $sql = 'UPDATE authorbook SET ';
+        $sqlInsert = array();
+        foreach ($edittedauthorbookinfo as $columns => $value) {
+            if (!empty($value)) {
+                $sqlInsert[] = ucfirst($columns).'='."'".$value."'";
+            }
+        }
+        $sqlInsert = implode(',', $sqlInsert);
+        if (!empty($sqlInsert)) {
+            $dbdata = $mysqli->query($sql .$sqlInsert." "."WHERE Authorid=".$id);
             $result=mysqli_fetch_assoc($dbdata);
         }
         return $result;
