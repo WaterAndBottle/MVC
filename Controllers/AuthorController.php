@@ -56,6 +56,6 @@ class AuthorController
             'authorid' => $authorid,
         ]);
         $authorService = new AuthorService();
-        return $authorService->ShowAuthorAndHisBooksInfoAction($author);
+        return $authorService->ShowAuthorAndHisBooksInfo($author);
     }
 }

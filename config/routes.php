@@ -11,4 +11,5 @@ return array(
     'Author/AddAuthor/([a-z]+)'=>'Author/AddAuthor',// Метод AddAuthorAction в AuthorController
     'Author/EditAuthor/([a-z]+)'=>'Author/EditAuthor',// Метод EditAuthorAction в AuthorController
     'Author/ShowAuthor/([a-z]+)'=>'Author/ShowAuthorInfo',// Метод ShowAuthorInfoAction в AuthorController
+    'Author/ShowAuthorBooks/([a-z]+)'=>'Author/ShowAuthorAndHisBooksInfo',// Метод ShowAuthorInfoAction в AuthorController
 );

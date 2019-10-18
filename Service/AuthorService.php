@@ -102,14 +102,14 @@ class AuthorService
         return $result;
     }
 
-    public function ShowAuthorAndHisBooksInfoAction($author)
+    public function ShowAuthorAndHisBooksInfo($author)
     {
         $authorid = $author->getAuthorId();
         $result=false;
         if (!empty($authorid))
         {
             $authorAdapter = new AuthorAdapter();
-            $result = $authorAdapter->ShowAuthorAndHisBooksInfoAction($authorid);
+            $result = $authorAdapter->ShowAuthorAndHisBooksInfo($authorid);
         }
         return $result;
     }

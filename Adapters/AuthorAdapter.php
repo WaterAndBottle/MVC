@@ -100,17 +100,13 @@ class AuthorAdapter
         return $data;
     }
 
-    public function ShowAuthorAndHisBooksInfoAction($authorid)
+    public function ShowAuthorAndHisBooksInfo($authorid)
     {
         $mysqli=new mysqli('localhost','root','','myfirst');
-        $query1='SELECT * FROM author WHERE AuthorId='.$authorid;
-        $result1=$mysqli->query($query1);
-        $data1=mysqli_fetch_assoc($result1);
-        $bookid='SELECT Bookid FROM authorbook WHERE AuthorId='.$authorid;
-        $bookid=mysqli_fetch_assoc($mysqli->query($bookid));
-        $query2='SELECT * FROM books WHERE id='.$bookid;
-        $result2=$mysqli->query($query2);
-        $data2=mysqli_fetch_assoc($result2);
-        return $data1.$data2;
+        $query='SELECT * FROM authorbook ab INNER JOIN author ON ab.Authorid=author.AuthorId INNER JOIN books ON ab.bookid=books.id WHERE ab.Authorid='.$authorid;
+        $result=$mysqli->query($query);
+        $data=mysqli_fetch_assoc($result);
+        var_dump($data);
+        return $data;
     }
 }
