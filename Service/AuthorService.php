@@ -16,31 +16,6 @@ class AuthorService
         return $result;
     }
 
-
-
-    public function getAuthorIdByName($authorName)
-    {
-        $result=false;
-        if (!empty($authorName))
-        {
-            $authorAdapter=new AuthorAdapter();
-            $result=$authorAdapter->getAuthorIdByName($authorName);
-        }
-        return $result;
-    }
-
-
-    /*    public function getAuthorBooksByAuthorId($authorid)
-        {
-            $result=false;
-            if (!empty($authorid))
-            {
-                $authorAdapter=new AuthorAdapter();
-                $result=$authorAdapter->getAuthorBooksByAuthorId($authorid);
-            }
-            return $result;
-        }
-    */
     public function getAuthorBirthDateByAuthorId($authorid)
     {
         $result=false;

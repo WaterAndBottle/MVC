@@ -7,7 +7,9 @@ require_once ROOT.'/Adapters/AuthorAdapter.php';
 class AuthorController
 {
 
-
+    /**
+     * @return bool
+     */
     public function AddAuthorAction()
     {
         $authorName = $_GET['authorName'];
@@ -21,7 +23,9 @@ class AuthorController
         return $authorService->AddAuthor($author);
     }
 
-
+    /**
+     * @return bool
+     */
     public function EditAuthorAction()
     {
         $authorName = $_GET['authorName'];
@@ -37,6 +41,9 @@ class AuthorController
         return $authorService->EditAuthor($author);
     }
 
+    /**
+     * @return bool|string[]
+     */
     public function ShowAuthorInfoAction()
     {
         $authorid=(integer) $_GET['authorid'];
@@ -48,6 +55,9 @@ class AuthorController
         return $authorService->ShowAuthorInfo($author);
     }
 
+    /**
+     * @return string[]
+     */
     public function ShowAuthorAndHisBooksInfoAction()
     {
         $authorid=(integer) $_GET['authorid'];

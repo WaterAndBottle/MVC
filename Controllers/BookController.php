@@ -12,12 +12,10 @@ class BookController
     public function AddBookAction()
     {
         $title = $_GET['title'];
-        $author = $_GET['author'];
         $price = $_GET['price'];
             $book = new Book
             ([
                 'title' => $title,
-                'author' => $author,
                 'price' => $price,
             ]);
             $BookService = new BookService();
@@ -30,7 +28,6 @@ class BookController
     public function EditBookAction()
     {
         $title = $_GET['title'];
-        $author = $_GET['author'];
         $year = $_GET['year'];
         $language = $_GET['language'];
         $isbn = $_GET['isbn'];
@@ -40,7 +37,6 @@ class BookController
         $book = new Book
             ([
             'title' => $title,
-            'author' => $author,
             'year' => $year,
             'language' => $language,
             'isbn' => $isbn,
@@ -78,7 +74,7 @@ class BookController
     }
 
     /**
-     *
+     * @return bool|string[]|null
      */
     public function BindBookAuthorAction()
     {
@@ -96,6 +92,9 @@ class BookController
             return $BookService->BindBook($book,$author);
     }
 
+    /**
+     * @return bool|string[]|null
+     */
     public function EditBookAuthorAction()
     {
         $bookid = $_GET['bookid'];

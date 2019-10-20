@@ -25,20 +25,6 @@ class BookAdapter
      * @param $bookid
      * @return array|null
      */
-    public function getBookAuthorByBookId($bookid)
-    {
-        $mysqli=new mysqli('localhost','root','','myfirst');
-        $query='SELECT Author FROM books WHERE id='.$bookid;
-        $result=$mysqli->query($query);
-        $data=mysqli_fetch_assoc($result);
-        $data=$data['Author'];
-        return $data;
-    }
-
-    /**
-     * @param $bookid
-     * @return array|null
-     */
     public function getBookYearByBookId($bookid)
     {
         $mysqli=new mysqli('localhost','root','','myfirst');
@@ -168,7 +154,6 @@ class BookAdapter
         $result['message'] = '';
         $id = $edittedbookinfo['bookid'];
         unset($edittedbookinfo['bookid']);
-        var_dump($edittedbookinfo);
         $sql = 'UPDATE books SET ';
         $sqlInsert = array();
         foreach ($edittedbookinfo as $columns => $value) {
@@ -197,52 +182,46 @@ class BookAdapter
         return $data;
     }
 
-
+    /**
+     * @param $MaxPrice
+     * @param $MinPrice
+     * @return array
+     */
     public function GroupByPrice($MaxPrice,$MinPrice)
     {
         $mysqli=new mysqli('localhost','root','','myfirst');
-        $query='SELECT Author FROM books WHERE Price<'.$MaxPrice." ".'&&'." ".'Price>'.$MinPrice;
+        $query='SELECT Title FROM books WHERE Price<'.$MaxPrice." ".'&&'." ".'Price>'.$MinPrice;
         $result=$mysqli->query($query);
-        for ($data = array (); $row = $result->fetch_assoc(); $data[] = $row);
+        $data=mysqli_fetch_assoc($result);
         return $data;
     }
 
-    public function BindBook($bindinfo)
+    /**
+     * @param $bookids
+     * @param $authorid
+     * @return string[]|null
+     */
+    public function BindBook($bookids,$authorid)
     {
         $mysqli=new mysqli('localhost','root','','myfirst');
         $result['status'] = false;
         $result['message'] = '';
-        $sql = 'INSERT INTO authorbook ';
-        $sqlInsertColumns = array();
+        $sql='INSERT INTO authorbook (Bookid,Authorid) VALUES ';
         $sqlInsertValue=array();
-        var_dump($bindinfo);
-        foreach ($bindinfo as $columns => $value)
+        foreach ($bookids as $bookid)
         {
-            if (!empty($value))
-            {
-                $sqlInsertColumns[] = ucfirst($columns);
-                if (is_integer($value))
-                {
-                    $sqlInsertValue[]="'".$value."'";
-                }
-                else
-                {
-                    $sqlInsertValue[]=$value;
-                }
-
-            }
+            $sqlInsertValue[]='('.$authorid.','.$bookid.')';
         }
-        $sqlInsertColumns = implode(',', $sqlInsertColumns);
-        $sqlInsertValue = implode(',', $sqlInsertValue);
-        if (!empty($sqlInsertColumns)&&!empty($sqlInsertValue))
-        {
-            $dbdata = $mysqli->query($sql ."(".$sqlInsertColumns.")"." "."VALUES".""."(".$sqlInsertValue.")");
-            var_dump($sql ."(".$sqlInsertColumns.")"." "."VALUES".""."(".$sqlInsertValue.")");
+        $sqlInsertValue=implode(',',$sqlInsertValue);
+            $dbdata = $mysqli->query($sql .$sqlInsertValue);
             $result=mysqli_fetch_assoc($dbdata);
-        }
         return $result;
     }
 
+    /**
+     * @param $edittedauthorbookinfo
+     * @return string[]|null
+     */
     public function EditBookAuthor($edittedauthorbookinfo)
     {
         $mysqli=new mysqli('localhost','root','','myfirst');

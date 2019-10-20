@@ -11,12 +11,6 @@ class Book
 private $title;
 
     /**
-     * @var string
-     */
-
-private $author;
-
-    /**
      * @var integer
      */
 private $year;
@@ -55,8 +49,7 @@ private $bookid;
 
 public function __construct($bookdata=array())
 {
-    $this->title=$bookdata['title'];
-    $this->author=$bookdata['author'];
+    $this->title=$bookdata['title'];;
     $this->year=$bookdata['year'];
     $this->language=$bookdata['language'];
     $this->isbn=$bookdata['isbn'];
@@ -100,40 +93,6 @@ public function __construct($bookdata=array())
     }
 
     /**
-     * @return string
-     */
-    public function getBookAuthor()
-    {
-        if (!isset($this->author)) {
-            $BookService = new BookService();
-            if (!empty($this -> bookid)) {
-                $this->author = $BookService->getBookAuthorByBookId($this->bookid);
-            }
-        }
-        return $this->author;
-    }
-
-    /**
-     * @param $author
-     * @return string
-     */
-    public function setBookAuthor($author)
-    {
-        if (is_string($author))
-        {
-            $this->author = $author;
-            $result['status'] = true;
-            $result['message'] = 'Успешно';
-            return $result;
-        }
-        else
-        {
-            $result['status'] = false;
-            return $result['message'] = 'Некорректно введен автор книги';
-        }
-    }
-
-    /**
      * @return integer
      */
     public function getBookYear()
@@ -153,7 +112,7 @@ public function __construct($bookdata=array())
      */
     public function setBookYear($year)
     {
-        if ( preg_match("[0-9][4]", $year))
+        if ( preg_match("[0-9]{4}", $year))
         {
             $this->year = $year;
             $result['status'] = true;
@@ -314,34 +273,5 @@ public function __construct($bookdata=array())
     public function getBookId()
     {
         return $this->bookid;
-    }
-
-
-    /**
-     * @return int|mixed
-     */
-    public function getBookIdByBookName()
-    {
-        if (!isset($this->bookid))
-        {
-            $BookService = new BookService();
-            if (!empty($this -> title)) {
-                $this->bookid = $BookService->getBookIdByBookName($this->title);
-            }
-        }
-        return $this->bookid;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAuthorId()
-    {
-        if (isset($this->author))
-        {
-            $author = new Author();
-            $authorid = $author->getAuthorId();
-            return $authorid;
-        }
     }
 }

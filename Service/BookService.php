@@ -109,6 +109,10 @@ class BookService
         return $result;
     }
 
+    /**
+     * @param $title
+     * @return int
+     */
     public function getBookIdByBookName($title)
     {
         $result=false;
@@ -218,25 +222,30 @@ class BookService
         return $result;
     }
 
-
+    /**
+     * @param $book
+     * @param $author
+     * @return bool|string[]|null
+     */
     public function BindBook($book,$author)
     {
         $bookid = $book->getBookId();
+        $bookids=explode(',',$bookid);
         $authorid = $author->getAuthorId();
         $result=false;
         if (!empty($bookid)&&!empty($authorid))
         {
-            $bindinfo=array
-            (
-                "bookid" => $bookid,
-                "authorid" => $authorid,
-            );
             $BookAdapter = new BookAdapter();
-            $result = $BookAdapter->BindBook($bindinfo);
+            $result = $BookAdapter->BindBook($bookids,$authorid);
         }
         return $result;
     }
 
+    /**
+     * @param $book
+     * @param $author
+     * @return bool|string[]|null
+     */
     public function EditBookAuthor($book,$author)
     {
         $bookid = $book->getBookId();

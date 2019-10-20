@@ -8,9 +8,6 @@ class Author
      */
 private $authorName;
 
-/*
-private $authorBooks;
-*/
     /**
      * @var int
      */
@@ -33,7 +30,6 @@ private $authorbookid;
 public function __construct($authordata=array())
 {
     $this->authorName=$authordata['authorName'];
- /*   $this->authorBooks=$authordata['authorBooks']; */
     $this->birthdate=$authordata['birthdate'];
     $this->authorid=$authordata['authorid'];
     $this->authorbookid=$authordata['authorbookid'];
@@ -76,27 +72,6 @@ public function __construct($authordata=array())
         }
     }
 
-   /*
-    public function getAuthorBooks()
-    {
-        if (!empty($this->authorBooks))
-        {
-            $authorService = new AuthorService();
-            if (!empty($this -> authorid))
-            {
-                $this->authorBooks = $authorService->getAuthorBooksByAuthorBooksId($this->authorid);
-            }
-        }
-        return $this->authorBooks;
-    }
-
-    public function setAuthorBooks($authorBooks=array())
-    {
-        $this->authorBooks = $authorBooks;
-        return $authorBooks;
-    }
-   */
-
     /**
      * @return int|mixed
      */
@@ -119,7 +94,7 @@ public function __construct($authordata=array())
      */
     public function setBirthDate($birthdate)
     {
-        if ( preg_match("[0-9][4]", $birthdate))
+        if ( preg_match("[0-9]{4}", $birthdate))
         {
             $this->birthdate = $birthdate;
             $result['status'] = true;
@@ -142,24 +117,4 @@ public function __construct($authordata=array())
         return $this->authorid;
     }
 
-    /**
-     * @return int
-     */
-    public function getAuthorBookId()
-    {
-        return $this->authorbookid;
-    }
-
-    public function getAuthorIdByName ()
-    {
-        if (!isset($this->authorid))
-        {
-            $authorService = new AuthorService();
-            if (!empty($this -> authorName))
-            {
-                $this->authorid = $authorService->getAuthorIdByName($this->authorName);
-            }
-        }
-        return $this->birthdate;
-    }
 }
